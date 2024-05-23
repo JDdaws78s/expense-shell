@@ -79,7 +79,7 @@ VALIDATE $? "enable backend"
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "MYSQL installation"
 
-mysql -h db.sureshm.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOGFILE
+mysql -h db.sureshm.online -uroot -p{db_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "load schema"
 
 systemctl restart backend &>>$LOGFILE
