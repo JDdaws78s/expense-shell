@@ -38,7 +38,7 @@ VALIDATE $? "enable nodejs20"
 dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Nodejs installation"
 
-id expense
+id expense &>>$LOGFILE
 if [ $? -ne 0 ]
 then
     useradd expense &>>$LOGFILE
@@ -80,7 +80,7 @@ VALIDATE $? "enable backend"
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "MYSQL installation"
 
-mysql -h db.sureshm.online -uroot -p{db_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h db.sureshm.online -uroot -p < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "load schema"
 
 systemctl restart backend &>>$LOGFILE
