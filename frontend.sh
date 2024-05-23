@@ -9,9 +9,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-echo "Enter DB password:"
-read -s db_root_password
-
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
