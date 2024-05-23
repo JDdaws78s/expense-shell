@@ -45,6 +45,7 @@ then
     VALIDATE $? "Expense user add"
 else
     echo "expense user already exists"
+fi
 
 mkdir -p /app &>>$LOGFILE
 VALIDATE $? "Make directory /app"
