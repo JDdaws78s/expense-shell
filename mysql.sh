@@ -9,6 +9,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+echo "Enter DB password:"
+read -s db_root_password
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -35,5 +38,15 @@ VALIDATE $? "Enabling mysql"
 systemctl start mysqld &>> $LOGFILE
 VALIDATE $? "starting mysql"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>> $LOGFILE
-VALIDATE $? "setting root password"
+# mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+# VALIDATE $? "Setting up root password"
+
+mysql -h db.sureshm.online -uroot -p{db_root_password} -e 'show databases;'
+if [ $? -ne 0 ]
+then
+    mysql_secure_installation --set-root-pass $db_root_password &>> $LOGFILE
+    VALIDATE $? "setting root password"
+else
+    echo -e "mysql root password already setup $Y SKIPPING... $N"
+fi
+
