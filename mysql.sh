@@ -41,7 +41,7 @@ VALIDATE $? "starting mysql"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 # VALIDATE $? "Setting up root password"
 
-mysql -h db.sureshm.online -uroot -p{db_root_password} -e 'show databases;' &>> $LOGFILE
+mysql -h db.sureshm.online -uroot -p -e 'show databases;' &>> $LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass $db_root_password &>> $LOGFILE
